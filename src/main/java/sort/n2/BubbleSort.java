@@ -1,4 +1,4 @@
-package sort;
+package sort.n2;
 
 import java.util.Arrays;
 
@@ -26,13 +26,19 @@ public class BubbleSort {
 
         //轮数 i+1代表第几轮    i+1 <= arr.length-1,那么i+1 < arr.length
         for (int i = 0; i < arr.length-1; i++) {
+            //发生过位置交换的标识
+            boolean swapFlag = false;
             //j+1代表比较的次数， i+1 +  j+1 = arr.length
             for (int j = 0; j < arr.length-i-1; j++) {
                 if(arr[j] > arr[j+1]){
                     int temp = arr[j];
                     arr[j] = arr[j+1];
                     arr[j+1] = temp;
+                    swapFlag = true;
                 }
+            }
+            if(!swapFlag){
+               break;
             }
         }
 
