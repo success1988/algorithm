@@ -33,7 +33,7 @@ public class CheckMethodUtil {
         System.out.println(succeed ? "Nice!" : "error----");
     }
 
-    private static int[] copyArray(int[] arr) {
+    public static int[] copyArray(int[] arr) {
         if(arr == null){
             return null;
         }
