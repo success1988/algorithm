@@ -5,6 +5,7 @@ import sort.CheckMethodUtil;
 import java.util.Arrays;
 
 /**
+ * 快排的空间复杂度是logN
  * @Author admin
  * @Date 2022/8/11
  */

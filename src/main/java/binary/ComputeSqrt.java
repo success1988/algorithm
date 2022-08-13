@@ -40,6 +40,7 @@ public class ComputeSqrt {
         BigDecimal result = BigDecimal.valueOf(left);
 
         //二、小数部分的查找： 对于小数点后的每一位，从0~9中尝试去选最接近真实值的数字
+        //FIXME 这块可以改为0~999999查找小数部分，而不需要逐位查找
         BigDecimal scale = BigDecimal.ONE;
         while(scale.compareTo(BigDecimal.valueOf(0.000001)) > 0){
             scale = scale.divide(BigDecimal.TEN);
