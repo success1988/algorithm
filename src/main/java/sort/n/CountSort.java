@@ -6,7 +6,7 @@ import java.util.Arrays;
  * @Title：计数排序
  * @Author：wangchenggong
  * @Date 2021/12/19 21:57
- * @Description
+ * @Description 之所以计算前缀和并且倒序遍历，是为了排序的稳定性
  * @Version
  */
 public class CountSort {
