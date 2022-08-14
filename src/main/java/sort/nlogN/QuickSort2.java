@@ -25,6 +25,10 @@ public class QuickSort2 {
 
     public static void quickSort(int[] arr, int left, int right){
         if(left < right){
+            /*if(left > right-60){
+                //TODO:在arr[left...right]上使用插入排序，小样本量的时候，跑得快
+                return;
+            }*/
             int[] equalsZone = partition(arr, left, right);
             quickSort(arr, left, equalsZone[0]-1);
             quickSort(arr, equalsZone[1]+1, right);

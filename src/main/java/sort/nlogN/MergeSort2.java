@@ -3,7 +3,8 @@ package sort.nlogN;
 import java.util.Arrays;
 
 /**
- * @Title： 归并排序--优化版本:原地排序
+ * @Title： 原地归并排序都是垃圾，因为这会让归并排序的时间复杂度变成O(N^2)
+ *   归并排序的额外空间复杂度可以变成O(1) ，搜“归并排序 内部缓存法”，但会牺牲掉稳定性
  * @Author：wangchenggong
  * @Date 2021/11/21 21:31
  * @Description
