@@ -53,7 +53,8 @@ public class TestTreeTraversal {
         LevelTraversal.levelOrderTraversal(node1);
 
 
-        int widthOfTree = LevelWidth.getWidthOfTree(node1);
+        //int widthOfTree = LevelWidth.getWidthOfTree(node1);
+        int widthOfTree = LevelWidth.getWidthOfTreeNoUseMap(node1);
         System.out.println("树的宽度为:"+widthOfTree);
 
     }
