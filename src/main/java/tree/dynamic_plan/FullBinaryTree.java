@@ -1,8 +1,10 @@
-package tree;
+package tree.dynamic_plan;
+
+import tree.Node;
 
 /**
  * 满二叉树：N = 2^n-1
- *      左右子树都是满二叉树
+ *      左右子树都是满二叉树,并不能推断出整棵树是满二叉树
  * @Author admin
  * @Date 2022/8/21
  */

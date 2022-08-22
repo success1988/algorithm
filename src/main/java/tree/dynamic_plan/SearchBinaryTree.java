@@ -1,4 +1,6 @@
-package tree;
+package tree.dynamic_plan;
+
+import tree.Node;
 
 /**
  * 搜索二叉树
