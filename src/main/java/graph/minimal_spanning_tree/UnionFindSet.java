@@ -3,6 +3,7 @@ package graph.minimal_spanning_tree;
 import graph.Node;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class UnionFindSet {
 
     public HashMap<Node, List<Node>> setMap;
 
-    public UnionFindSet(List<Node> nodes){
+    public UnionFindSet(Collection<Node> nodes){
         for(Node node : nodes){
             List<Node> list = new ArrayList<>();
             list.add(node);
