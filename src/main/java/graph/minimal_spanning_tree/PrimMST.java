@@ -31,17 +31,21 @@ public class PrimMST {
         for(Node node :  graph.nodes.values()){
             if(!viewedNodes.contains(node)){
                 viewedNodes.add(node);
-                //获取所有的边
+                //由一个点，解锁所有相连的边
                 for(Edge e : node.edges){
                     priorityQueue.offer(e);
                 }
 
                 while(!priorityQueue.isEmpty()){
+                    //弹出解锁的边中，权重最小的边
                     Edge edge = priorityQueue.poll();
                     Node toNode = edge.to;
+                    //判断to点是否为新的点
                     if(!viewedNodes.contains(toNode)){
-                        viewedNodes.add(toNode);
+                        //若是新的点，则当前这条边放入结果集中
                         result.add(edge);
+                        //同时将to点所有的边也解锁，周而复始
+                        viewedNodes.add(toNode);
                         for(Edge ed : toNode.edges){
                             priorityQueue.offer(ed);
                         }
