@@ -49,7 +49,29 @@ public class TrieTree {
             node.end++;
         }
 
+        public void delete(String word){
+            if(search(word) == 0){
+                return;
+            }
 
+            char[] chars = word.toCharArray();
+            TrieNode node = root;
+            node.pass--;
+
+            // a-b-c "abc"
+            for (int i = 0; i < chars.length; i++) {
+                char currentChar = chars[i];
+                int currentIndex = currentChar - 'a';
+
+                if(--node.nexts[currentIndex].pass == 0){
+                    //正常情况，只有最后一个字符才可能会走到这里
+                    node.nexts[currentIndex] = null;
+                    return;
+                }
+                node = node.nexts[currentIndex];
+            }
+            node.end--;
+        }
 
 
         //单词word在之前加入过几次  关注end值
