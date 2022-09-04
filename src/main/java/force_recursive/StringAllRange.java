@@ -30,9 +30,16 @@ public class StringAllRange {
             return;
         }
 
+        //【分支限界】用来记录i位置都尝试过哪些字符，避免重复尝试
+        boolean[] visit = new boolean[26];
+
         //这里j=i时表示不跟后边交换的情况
         //这里j>i时表示跟后边交换的情况
         for (int j = i; j < chars.length; j++) {
+            if(visit[chars[j]-'a']){
+                continue;
+            }
+            visit[chars[j]-'a'] = true;
             swapChar(chars, i, j);
             process(chars, i+1, res);
             swapChar(chars, i, j);
