@@ -10,7 +10,7 @@ public class CardGame {
 
     public static void main(String[] args) {
         int[] arr = new int[]{1,2,100,4};
-        System.out.println(winnerScore(arr, 0, 3));
+        System.out.println(winnerScore(arr, 0, arr.length-1));
     }
 
     public static int winnerScore(int[] arr, int L, int R){
@@ -36,6 +36,7 @@ public class CardGame {
         }
         int otherChooseLeft = firstHand(arr, L+1, R);
         int otherChooseRight = firstHand(arr, L, R-1);
+        //因为对手是绝顶聪明的，所以这个值只能取最小值
         return Math.min(otherChooseLeft, otherChooseRight);
     }
 
