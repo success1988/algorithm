@@ -26,6 +26,7 @@ public class BMStringSearch {
         for (int i = 0; i < m - 1; ++i) { // b[0, i]
             int j = i;
             int k = 0; // 公共后缀子串长度
+            //让j向后移动k-1个位置，然后向前移动，与此同时，让另一个指针从末尾也向前移动
             while (j >= 0 && b[j] == b[m-1-k]) { // 与 b[0, m-1] 求公共后缀子串
                 --j;
                 ++k;
