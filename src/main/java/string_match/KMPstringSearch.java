@@ -1,6 +1,8 @@
 package string_match;
 
 /**
+ * next[j+1]能取到的最大值为next[j]+1
+ * 若最大值确定取不到，那么next[j+1]能取到的次大值为next[next[j]]+1
  * @author admin
  * @date 2022/9/10 11:57
  */
@@ -8,7 +10,7 @@ public class KMPstringSearch {
 
     // a, b 分别是主串和模式串；n, m 分别是主串和模式串的长度。
     public static int kmp(char[] a, int n, char[] b, int m) {
-        int[] next = getNexts(b, m);
+        int[] next = getNexts2(b, m);
         int j = 0;
         for (int i = 0; i < n; ++i) {
             while (j > 0 && a[i] != b[j]) { // 一直找到 a[i] 和 b[j]
@@ -39,6 +41,22 @@ public class KMPstringSearch {
                 ++k;
             }
             next[i] = k;
+        }
+        return next;
+    }
+
+
+    private static int[] getNexts2(char[] b, int m) {
+        int[] next = new int[m];
+        next[0] = -1;
+        int k = -1;
+        int i = 1;
+        while(i < m){
+            if(k == -1 || b[k + 1] == b[i]){
+                next[i++] = ++k;
+            }else{
+                k = next[k];
+            }
         }
         return next;
     }
