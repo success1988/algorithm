@@ -81,8 +81,8 @@ public class DijkstraOpt {
                 distanceMap.put(node, distance);
                 insertHeapify(size++);
             }
-            //啥情况，会将headIndexMap中的value设置为-1呢？ 弹出的
-            // 那又是什么情况下 要把节点 从 堆中弹出呢?
+            //啥情况，会将headIndexMap中的value设置为-1呢？ 弹出的顶点，也就是被锁定的顶点
+            // 那又是什么情况下 要把节点 从 堆中弹出呢? 从distanceMap中找到距离最小的顶点，要求该顶点尚未被锁定
 
         }
 
@@ -145,7 +145,14 @@ public class DijkstraOpt {
     }
 
     /**
-     * 改进后的迪杰斯特拉算法
+     * 迪杰斯特拉算法核心：
+     * 从U（未锁定的顶点集合）中找出路径最短的顶点curNode，并将其加入到S（已锁定的顶点集合）中；
+     * 接着，更新U中的顶点（curNode的所有边的to顶点）和顶点对应的路径
+     * 然后，再从U中找出路径最短的顶点，并将其加入到S中；
+     * 接着，更新U中的顶点和顶点对应的路径。
+     * … 重复该操作，直到遍历完所有顶点
+     *
+     * 【改进后的迪杰斯特拉算法】
      * @param head
      * @param size
      * @return 从head出发，所有head能到达的节点，生成到达每个节点的最小路径记录并返回
