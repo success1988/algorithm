@@ -3,7 +3,7 @@ package dynamic_programming;
 import java.util.Arrays;
 
 /**
- * 纸牌游戏
+ * 纸牌游戏======范围上尝试模型的典范
  * 给定一个整型数组arr，代表数值不同的纸牌排成一条线
  * 玩家A和玩家B依次拿走每张纸牌
  * 规定玩家A先拿，玩家B后拿
