@@ -23,10 +23,10 @@ public class WaysFromUnlimitedFaceValues {
             return rest == 0 ? 1 : 0;
         }
 
-        //对于每个面值，都有0~rest/faceValue 共rest/faceValue +1种尝试方法
+        //对于每个面值faceValue，都有0~rest/faceValue 共rest/faceValue +1种尝试方法
         int ways = 0;
-        for (int i = 0; i <= rest/faceValueArray[index]; i++) {
-            ways += process(faceValueArray, aim, index+1, rest - i*faceValueArray[index]);
+        for (int zhang = 0; zhang*faceValueArray[index] <= rest; zhang++) {
+            ways += process(faceValueArray, aim, index+1, rest - zhang*faceValueArray[index]);
         }
         return ways;
     }
