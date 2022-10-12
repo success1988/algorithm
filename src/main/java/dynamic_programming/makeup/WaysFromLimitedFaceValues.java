@@ -13,15 +13,55 @@ public class WaysFromLimitedFaceValues {
         //纸币数组
         int[] moneyArray = new int[]{1,1,1,2,5,10,100,20,20,2,5,10,20,50,100};
         //要凑的钱数
-        int aim = 59;
+        int aim = 69;
 
         int ways = getWays(moneyArray, aim);
         System.out.println("【暴力递归】凑出目标钱数的方法数为:"+ways);
 
+        int waysDp = getWaysByDp(moneyArray, aim);
+        System.out.println("【动态规划】凑出目标钱数的方法数为:"+waysDp);
+
     }
 
-    private static int getWays(int[] moneyArray, int aim) {
+    private static int getWaysByDp(int[] moneyArray, int aim) {
         //先将moneyArray加工处理为两个数组：面值数组及对应的数量数组
+        Info info = groupMoneyByFaceValue(moneyArray);
+        int[] faceValues = info.faceValues;
+        int[] moneyNums = info.moneyNums;
+
+        int N = faceValues.length;
+        int[][] dp = new int[N+1][aim+1];
+
+        //对第N行赋值，由于默认值未0，无需对其他元素处理
+        dp[N][0] = 1;
+
+        for (int index = N-1; index >= 0; index--) {
+            for (int rest = 0; rest <= aim; rest++) {
+                dp[index][rest] = dp[index+1][rest];
+                if(rest-faceValues[index] >= 0){
+                    dp[index][rest] += dp[index][rest-faceValues[index]];
+                }
+
+                if(rest-(moneyNums[index]+1)*faceValues[index] >= 0){
+                    dp[index][rest] -= dp[index+1][rest-(moneyNums[index]+1)*faceValues[index]];
+                }
+            }
+        }
+
+        return dp[0][aim];
+    }
+
+    public static class Info{
+        int[] faceValues;
+        int[] moneyNums;
+    }
+
+    /**
+     * 将moneyArray加工处理为两个数组：面值数组及对应的数量数组
+     * @param moneyArray
+     * @return
+     */
+    private static Info groupMoneyByFaceValue(int[] moneyArray){
         Map<Integer,Integer> faceValueNumMap = new HashMap<>();
         for(int faceValue : moneyArray){
             if(faceValueNumMap.containsKey(faceValue)){
@@ -39,8 +79,17 @@ public class WaysFromLimitedFaceValues {
             moneyNums[i] = entry.getValue();
             i++;
         }
+        Info info = new Info();
+        info.faceValues = faceValues;
+        info.moneyNums = moneyNums;
+        return info;
+    }
 
-        return process(faceValues, moneyNums, 0, aim);
+
+    private static int getWays(int[] moneyArray, int aim) {
+        //先将moneyArray加工处理为两个数组：面值数组及对应的数量数组
+        Info info = groupMoneyByFaceValue(moneyArray);
+        return process(info.faceValues, info.moneyNums, 0, aim);
     }
 
 
